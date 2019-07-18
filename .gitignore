@@ -40,3 +40,4 @@ DerivedData/
 # End of https://www.gitignore.io/api/xcode
 
 .swiftpm
+.build

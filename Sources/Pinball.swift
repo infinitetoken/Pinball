@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Combine
 
 public struct Pinball {
     
@@ -273,7 +272,7 @@ public extension URLSession {
     
 }
 
-@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public extension URLSession {
     
     func dataTaskPublisher(for endpoint: Pinball.Endpoint) throws -> URLSession.DataTaskPublisher {
