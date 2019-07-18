@@ -36,6 +36,8 @@ public struct Pinball {
     public enum Scheme: String {
         case http = "http"
         case https = "https"
+        case ws = "ws"
+        case wss = "wss"
     }
     
     public struct Query: Equatable {
@@ -268,6 +270,18 @@ public extension URLSession {
     
     func dataTask(for endpoint: Pinball.Endpoint, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) throws {
         self.dataTask(with: try endpoint.urlRequest(), completionHandler: completionHandler)
+    }
+    
+    func downloadTask(for endpoint: Pinball.Endpoint) throws -> URLSessionDownloadTask {
+        self.downloadTask(with: try endpoint.urlRequest())
+    }
+    
+    func downloadTask(for endpoint: Pinball.Endpoint, completionHandler: @escaping (URL?, URLResponse?, Error?) -> Void) throws {
+        self.downloadTask(with: try endpoint.urlRequest(), completionHandler: completionHandler)
+    }
+    
+    func uploadTask(for endpoint: Pinball.Endpoint, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) throws {
+        self.uploadTask(with: try endpoint.urlRequest(), from: endpoint.data, completionHandler: completionHandler)
     }
     
 }
