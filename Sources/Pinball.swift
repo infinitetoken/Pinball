@@ -36,6 +36,8 @@ public struct Pinball {
     public enum Scheme: String {
         case http = "http"
         case https = "https"
+        case ws = "ws"
+        case wss = "wss"
     }
     
     public struct Query: Equatable {
@@ -208,6 +210,30 @@ public struct Pinball {
         public var headers: [Header] = []
         public var data: Data?
         
+        public init(
+            method: Method = .get,
+            scheme: Scheme = .https,
+            host: String,
+            port: Int = 80,
+            user: String? = nil,
+            password: String? = nil,
+            paths: [String] = [],
+            queries: [Query] = [],
+            headers: [Header] = [],
+            data: Data? = nil
+        ) {
+            self.method = method
+            self.scheme = scheme
+            self.host = host
+            self.port = port
+            self.user = user
+            self.password = password
+            self.paths = paths
+            self.queries = queries
+            self.headers = headers
+            self.data = data
+        }
+        
         public var urlComponents: URLComponents {
             var urlComponents = URLComponents()
             urlComponents.scheme = scheme.rawValue
@@ -268,6 +294,18 @@ public extension URLSession {
     
     func dataTask(for endpoint: Pinball.Endpoint, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) throws {
         self.dataTask(with: try endpoint.urlRequest(), completionHandler: completionHandler).resume()
+    }
+    
+    func downloadTask(for endpoint: Pinball.Endpoint) throws -> URLSessionDownloadTask {
+        self.downloadTask(with: try endpoint.urlRequest())
+    }
+    
+    func downloadTask(for endpoint: Pinball.Endpoint, completionHandler: @escaping (URL?, URLResponse?, Error?) -> Void) throws {
+        self.downloadTask(with: try endpoint.urlRequest(), completionHandler: completionHandler)
+    }
+    
+    func uploadTask(for endpoint: Pinball.Endpoint, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) throws {
+        self.uploadTask(with: try endpoint.urlRequest(), from: endpoint.data, completionHandler: completionHandler)
     }
     
 }
