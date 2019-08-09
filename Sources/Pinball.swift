@@ -301,11 +301,11 @@ public extension URLSession {
     }
     
     func downloadTask(for endpoint: Pinball.Endpoint, completionHandler: @escaping (URL?, URLResponse?, Error?) -> Void) throws {
-        self.downloadTask(with: try endpoint.urlRequest(), completionHandler: completionHandler)
+        self.downloadTask(with: try endpoint.urlRequest(), completionHandler: completionHandler).resume()
     }
     
     func uploadTask(for endpoint: Pinball.Endpoint, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) throws {
-        self.uploadTask(with: try endpoint.urlRequest(), from: endpoint.data, completionHandler: completionHandler)
+        self.uploadTask(with: try endpoint.urlRequest(), from: endpoint.data, completionHandler: completionHandler).resume()
     }
     
 }
