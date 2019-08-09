@@ -267,7 +267,7 @@ public extension URLSession {
     }
     
     func dataTask(for endpoint: Pinball.Endpoint, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) throws {
-        self.dataTask(with: try endpoint.urlRequest(), completionHandler: completionHandler)
+        self.dataTask(with: try endpoint.urlRequest(), completionHandler: completionHandler).resume()
     }
     
 }
