@@ -280,31 +280,31 @@ final class PinballTests: XCTestCase {
     
     func testCanBuildURLSessionTasks() {
         let endpoint = Pinball.Endpoint(host: "localhost")
-        
+
         do {
             let _ = try URLSession.shared.dataTask(for: endpoint)
         } catch {
             XCTFail(error.localizedDescription)
         }
-        
+
         do {
             let _ = try URLSession.shared.dataTask(for: endpoint, completionHandler: { (_, _, _) in })
         } catch {
             XCTFail(error.localizedDescription)
         }
-        
+
         do {
             let _ = try URLSession.shared.downloadTask(for: endpoint)
         } catch {
             XCTFail(error.localizedDescription)
         }
-        
+
         do {
             let _ = try URLSession.shared.downloadTask(for: endpoint, completionHandler: { (_, _, _) in })
         } catch {
             XCTFail(error.localizedDescription)
         }
-        
+
         do {
             let _ = try URLSession.shared.uploadTask(for: endpoint, completionHandler: { (_, _, _) in })
         } catch {
@@ -316,7 +316,7 @@ final class PinballTests: XCTestCase {
 
 @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 extension PinballTests {
-    
+
     func testCanBuildURLSessionPublisher() {
         let endpoint = Pinball.Endpoint(host: "localhost")
 

@@ -297,7 +297,7 @@ public extension URLSession {
     }
     
     func downloadTask(for endpoint: Pinball.Endpoint) throws -> URLSessionDownloadTask {
-        self.downloadTask(with: try endpoint.urlRequest())
+        return self.downloadTask(with: try endpoint.urlRequest())
     }
     
     func downloadTask(for endpoint: Pinball.Endpoint, completionHandler: @escaping (URL?, URLResponse?, Error?) -> Void) throws {
