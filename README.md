@@ -2,8 +2,22 @@
 
 Pinball is a tiny networking library for Swift!
 
+- [Installation](#installation)
 - [Usage](#usage)
+- [Reference](#reference)
 - [License](#license)
+
+## Installation
+
+Pinball can be installed using the Swift Package Manager. Add the following to your `Package.swift` file:
+
+```swift
+
+dependencies: [
+    .Package(url: "https://github.com/infinitetoken/Pinball.git", from: "1.0.0")
+]
+
+```
 
 ## Usage
 
@@ -48,6 +62,10 @@ do {
 }
 
 ```
+
+## Reference
+
+[Introducing Pinball](https://medium.com/infinite-token/introducing-pinball-6ba3ee93771c)
 
 ## License
 
