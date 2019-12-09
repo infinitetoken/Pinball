@@ -65,7 +65,7 @@ do {
 
 ## Reference
 
-[Introducing Pinball](https://medium.com/infinite-token/introducing-pinball-6ba3ee93771c)
+- [Introducing Pinball](https://medium.com/infinite-token/introducing-pinball-6ba3ee93771c)
 
 ## License
 
