@@ -310,7 +310,24 @@ public extension URLSession {
     
 }
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@available(macOS 12.0.0, iOS 15.0.0, tvOS 15.0.0, watchOS 8.0.0, *)
+public extension URLSession {
+    
+    func data(for endpoint: Pinball.Endpoint) async throws -> (Data, URLResponse) {
+        return try await self.data(for: try endpoint.urlRequest())
+    }
+    
+    func download(for endpoint: Pinball.Endpoint) async throws -> (URL, URLResponse) {
+        return try await self.download(for: try endpoint.urlRequest())
+    }
+
+    func upload(for endpoint: Pinball.Endpoint) async throws -> (Data, URLResponse) {
+        return try await self.upload(for: try endpoint.urlRequest(), from: endpoint.data ?? Data())
+    }
+    
+}
+
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public extension URLSession {
     
     func dataTaskPublisher(for endpoint: Pinball.Endpoint) throws -> URLSession.DataTaskPublisher {
